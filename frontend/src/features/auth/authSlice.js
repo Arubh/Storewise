@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { loginUser, createUser, signOut, checkAuth } from './authAPI';
-import { updateUser } from '../user/userAPI';
 
 const initialState = {
   loggedInUserToken: null, // this should only contain user identity => 'id'/'role'
@@ -94,8 +93,8 @@ export const authSlice = createSlice({
       })
       .addCase(checkAuthAsync.rejected, (state, action) => {
         state.status = 'idle';
-        state.userChecked = true;
-      })
+        state.userChecked = true; 
+      }) 
   },
 });
 

@@ -41,7 +41,7 @@ function classNames(...classes) {
 
 export default function ProductList() {
   const dispatch = useDispatch();
-  const products = useSelector(selectAllProducts);
+  const products = useSelector(selectAllProducts); 
   const brands = useSelector(selectBrands);
   const categories = useSelector(selectCategories);
   const totalItems = useSelector(selectTotalItems);

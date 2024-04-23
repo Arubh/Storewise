@@ -18,7 +18,7 @@ const productSchema = new Schema({
 
 const virtual  = productSchema.virtual('id');
 virtual.get(function(){
-    return this._id;
+    return this._id; 
 })
 productSchema.set('toJSON',{
     virtuals: true,
@@ -27,4 +27,4 @@ productSchema.set('toJSON',{
 })
 
 
-exports.Product = mongoose.model('Product',productSchema)
+exports.Product = mongoose.model('Product',productSchema)  

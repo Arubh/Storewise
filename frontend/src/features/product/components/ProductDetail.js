@@ -50,18 +50,18 @@ export default function ProductDetail() {
   const params = useParams();
   const alert = useAlert();
   const status = useSelector(selectProductListStatus);
-
+ 
   const handleCart = (e) => {
     e.preventDefault();
     if (items.findIndex((item) => item.product.id === product.id) < 0) {
       console.log({ items, product });
       const newItem = {
         product: product.id,
-        quantity: 1
+        quantity: 1 
       };
       dispatch(addToCartAsync(newItem));
       // TODO: it will be based on server response of backend
-      alert.success('Item added to Cart');
+      alert.success('Item added to Cart'); 
     } else {
       alert.error('Item Already added');
     }
@@ -321,14 +321,14 @@ export default function ProductDetail() {
                     </div>
                   </RadioGroup>
                 </div>
-
+ 
                 <button
                   onClick={handleCart}
                   type="submit"
                   className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 >
                   Add to Cart
-                </button>
+                </button> 
               </form>
             </div>
 

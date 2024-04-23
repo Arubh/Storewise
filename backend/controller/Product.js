@@ -1,7 +1,6 @@
 const { Product } = require('../model/Product');
 
 exports.createProduct = async (req, res) => {
-  // this product we have to get from API body
   const product = new Product(req.body);
   try {
     const doc = await product.save();
@@ -17,18 +16,17 @@ exports.fetchAllProducts = async (req, res) => {
   // pagination = {_page:1,_limit=10}
   // TODO : we have to try with multiple category and brands after change in front-end
   let condition = {}
-  if(!req.query.admin){
-      condition.deleted = {$ne:true}
+  if (!req.query.admin) {
+    condition.deleted = { $ne: true }
   }
-  
+  //for admin display all products
+  //for users, display only those products whose "deleted: false
   let query = Product.find(condition);
   let totalProductsQuery = Product.find(condition);
 
   if (req.query.category) {
     query = query.find({ category: req.query.category });
-    totalProductsQuery = totalProductsQuery.find({
-      category: req.query.category,
-    });
+    totalProductsQuery = totalProductsQuery.find({ category: req.query.category });
   }
   if (req.query.brand) {
     query = query.find({ brand: req.query.brand });
@@ -40,16 +38,17 @@ exports.fetchAllProducts = async (req, res) => {
   }
 
   const totalDocs = await totalProductsQuery.count().exec();
-  console.log({ totalDocs });
+  // console.log({ totalDocs });
 
   if (req.query._page && req.query._limit) {
     const pageSize = req.query._limit;
-    const page = req.query._page;
-    query = query.skip(pageSize * (page - 1)).limit(pageSize);
+    const pageNo = req.query._pageNo;
+    query = query.skip(pageSize * (pageNo - 1)).limit(pageSize);
   }
 
   try {
     const docs = await query.exec();
+    //we finally execute query to which we have added different functions like find, sort, etc.
     res.set('X-Total-Count', totalDocs);
     res.status(200).json(docs);
   } catch (err) {
@@ -58,8 +57,7 @@ exports.fetchAllProducts = async (req, res) => {
 };
 
 exports.fetchProductById = async (req, res) => {
-  const { id } = req.params;
-
+  const { id } = req.params; //this is id of product
   try {
     const product = await Product.findById(id);
     res.status(200).json(product);
@@ -69,9 +67,9 @@ exports.fetchProductById = async (req, res) => {
 };
 
 exports.updateProduct = async (req, res) => {
-  const { id } = req.params;
+  const { id } = req.params; //this is id of product
   try {
-    const product = await Product.findByIdAndUpdate(id, req.body, {new:true});
+    const product = await Product.findByIdAndUpdate(id, req.body, { new: true });
     res.status(200).json(product);
   } catch (err) {
     res.status(400).json(err);

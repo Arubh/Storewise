@@ -13,7 +13,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkAuthAsync, selectLoggedInUser, selectUserChecked } from './features/auth/authSlice';
 import { fetchItemsByUserIdAsync } from './features/cart/cartSlice';
-import PageNotFound from './pages/404';
+import PageNotFound from './pages/404'; 
 import OrderSuccessPage from './pages/OrderSuccessPage';
 import UserOrdersPage from './pages/UserOrdersPage';
 import UserProfilePage from './pages/UserProfilePage';
@@ -180,7 +180,7 @@ function App() {
         {/* Link must be inside the Provider */}
       </div>
     </>
-  );
+  ); 
 }
 
 export default App;

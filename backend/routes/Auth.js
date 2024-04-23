@@ -9,3 +9,4 @@ router.post('/signup', createUser)
 .get('/check',passport.authenticate('jwt'), checkAuth)
 .get('/logout',logout)
 exports.router = router;
+  

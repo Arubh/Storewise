@@ -7,3 +7,4 @@ router.get('/own', fetchUserById)
       .patch('/:id', updateUser)
 
 exports.router = router;
+ 

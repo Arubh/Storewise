@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "connect-sqlite": "^0.0.1",
     "connect-sqlite3": "^0.9.13",
     "cookie-parser": "^1.4.6",
