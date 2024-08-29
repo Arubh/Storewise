@@ -23,12 +23,10 @@ const { isAuth, sanitizeUser, cookieExtractor } = require('./services/common');
 const path = require('path')
 
 const SECRET_KEY = 'SECRET_KEY';
-// JWT options
-
 
 const opts = {};
 opts.jwtFromRequest = cookieExtractor;
-opts.secretOrKey = SECRET_KEY; // TODO: should not be in code;
+opts.secretOrKey = SECRET_KEY;
 
 //middlewares
 
@@ -169,12 +167,12 @@ passport.deserializeUser(function (user, cb) { //user is the userData to be seri
   console.log('de-serialize', user);
   process.nextTick(function () {
     return cb(null, user)
-  });
+  }); 
 });
 
 
 async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/ecommerce');
+  await mongoose.connect('mongodb+srv://aditya2108raj:9zjxfIgm4QRxNYyX@cluster0.wmaei.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0');
   console.log('database connected');
 }
 main().catch((err) => console.log(err));
